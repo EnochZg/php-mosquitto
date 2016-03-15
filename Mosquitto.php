@@ -3,9 +3,8 @@
 namespace enochzg\mosquitto;
 
 use yii;
-use yii\base\Component;
 
-class Mosquitto extends Component
+class Mosquitto
 {
     public $host;
     protected $object;

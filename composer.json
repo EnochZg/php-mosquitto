@@ -1,5 +1,5 @@
 {
-    "name": "enochzg/mosquitto",
+    "name": "enochzg/yii2-mosquitto",
     "description": "yii2-mosquitto",
     "require": {
         "php": ">=5.3.0"
