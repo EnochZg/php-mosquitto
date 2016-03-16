@@ -42,4 +42,14 @@ class Mosquitto extends yii\base\Component
         }
         return true;
     }
+
+    /**
+     * @param $topic
+     * @param $quality
+     * @return bool
+     */
+    public function subscribe($topic, $quality)
+    {
+        return true;
+    }
 }

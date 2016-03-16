@@ -2,17 +2,11 @@
 
 ## Installation
 
+The component is based on `php-mosquitto` extension. The download link is `https://github.com/mgdm/Mosquitto-PHP`.
+
 ```bash
 composer require enochzg/yii2-mosquitto
 ```
-
-or add
-
-```
-"enochzg/yii2-mosquitto": "~1.0.0"
-```
-
-to the ```require``` section of your `composer.json` file.
 
 ## Usage
 
