@@ -44,12 +44,18 @@ class Mosquitto extends yii\base\Component
     }
 
     /**
+     * 订阅
      * @param $topic
      * @param $quality
      * @return bool
      */
     public function subscribe($topic, $quality)
     {
-        return true;
+        $obj = $this->object;
+        $obj->subscribe($topic, $quality);
+        $obj->onMessage(function($message){
+            echo $message->payload . "<br>";
+        });
+        $obj->loopForever();
     }
 }
