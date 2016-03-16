@@ -4,18 +4,22 @@ namespace enochzg\mosquitto;
 
 use yii;
 
-class Mosquitto
+class Mosquitto extends yii\base\Component
 {
     public $host;
+    public $port;
+
+    /**
+     * @var int heartbeat time (seconds)
+     */
+    public $keepalive = 60;
+
     protected $object;
 
     public function init()
     {
         $c = new \Mosquitto\Client;
-        $c->onConnect(function() use ($c) {
-            yii::info('connect successful!', 'mosquitto');
-        });
-        $c->connect($this->host);
+        $c->connect($this->host, $this->port, $this->keepalive);
         $this->object = $c;
     }
 

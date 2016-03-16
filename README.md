@@ -19,19 +19,18 @@ to the ```require``` section of your `composer.json` file.
 Add target class in your project config:
 
 ```php
-<?php
 'components' => [
     'mosquitto' => [
         'class' => 'enochzg\mosquitto\Mosquitto',
         'host' => '127.0.0.1',
+        'port' => '1883',
+        'keepalive' => 60,
     ],
     //......
 ]
-?>
 ```
 
+e.g.
 ```php
-<?php
-    yii::$app->mosquitto->publish('1', 'message');
-?>
+yii::$app->mosquitto->publish('1', 'message', 2);
 ```
