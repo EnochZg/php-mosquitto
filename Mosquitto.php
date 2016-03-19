@@ -10,6 +10,22 @@ class Mosquitto extends yii\base\Component
     public $port;
 
     /**
+     * @var CA的证书文件的位置
+     */
+    public $cafile = null;
+
+    /**
+     * @var CA为server端签发的证书文件的位置
+     */
+    public $certfile = null;
+
+    /**
+     * @var server端使用的key文件的位置
+     */
+    public $keyfile = null;
+    public $password = null;
+
+    /**
      * @var int heartbeat time (seconds)
      */
     public $keepalive = 60;
@@ -19,6 +35,9 @@ class Mosquitto extends yii\base\Component
     public function init()
     {
         $c = new \Mosquitto\Client;
+        if($this->cafile && $this->certfile && $this->keyfile) {
+            $c->setTlsCertificates($this->cafile, $this->certfile, $this->keyfile, $this->password);
+        }
         $c->connect($this->host, $this->port, $this->keepalive);
         $this->object = $c;
     }
@@ -44,18 +63,14 @@ class Mosquitto extends yii\base\Component
     }
 
     /**
-     * 订阅
-     * @param $topic
-     * @param $quality
-     * @return bool
+     * @param $cafile
+     * @param $certfile
+     * @param $keyfile
+     * @param $password
      */
-    public function subscribe($topic, $quality)
+    public function setTlsCertificates($cafile, $certfile, $keyfile, $password)
     {
         $obj = $this->object;
-        $obj->subscribe($topic, $quality);
-        $obj->onMessage(function($message){
-            echo $message->payload . "<br>";
-        });
-        $obj->loopForever();
+        $obj->setTlsCertificates($cafile, $certfile, $keyfile, $password);
     }
 }

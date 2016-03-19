@@ -19,6 +19,9 @@ Add target class in your project config:
         'host' => '127.0.0.1',
         'port' => '1883',
         'keepalive' => 60,
+        'cafile' => '[your/cert/path]/ca.crt',
+        'certfile' => '[your/cert/path]/client.crt',
+        'keyfile' => '[your/cert/path]/client.key',
     ],
     //......
 ]
